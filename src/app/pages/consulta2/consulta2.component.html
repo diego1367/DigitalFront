@@ -1,0 +1,15 @@
+<h2 class="content-block">Listado de Productos llegados al minimo permitido </h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-data-grid #dataGridListado [dataSource]="dataSource" [focusedRowEnabled]="true" keyExpr="id"
+      [showColumnLines]="true" [showRowLines]="true">
+      <dxi-column caption="Codigo" dataField="id" sortOrder="asc" [width]="100">
+      </dxi-column>
+      <dxi-column caption="Nombre" dataField="nombreProducto"></dxi-column>
+      <dxi-column caption="N° Inventario" dataField="cantidadInventario" [width]="150" alignment="left"></dxi-column>
+      <dxi-column caption="Precio" dataField="precioProducto" format="currency" [width]="150"></dxi-column>
+      <dxo-pager [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true">
+      </dxo-pager>
+    </dx-data-grid>
+  </div>
+</div>

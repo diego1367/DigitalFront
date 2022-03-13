@@ -1,0 +1,21 @@
+<h2 class="content-block">Venta de cliente entre 2 fechas con una edad menor a 35 años</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-data-grid #dataGridListado [dataSource]="dataSource" [focusedRowEnabled]="true" keyExpr="idVentas"
+      [showColumnLines]="true" [showRowLines]="true">
+      <dxi-column caption="Codigo" dataField="idVentas" sortOrder="asc" [width]="100">
+      </dxi-column>
+      <dxi-column caption="Nombre" dataField="nombreCliente"></dxi-column>
+      <dxi-column caption="Apellido" dataField="apellidoCliente" ></dxi-column>
+      <dxi-column caption="Tipo Identificación" dataField="tipoDocumento" [width]="150" [calculateDisplayValue]="getValue"></dxi-column>
+      <dxi-column caption="N° de Identificación" dataField="cedula" [width]="150"  ></dxi-column>
+      <dxi-column caption="Celular" dataField="numeroCelular" [width]="200"></dxi-column>
+      <dxi-column caption="Fecha de Venta" dataField="fechaVenta"  dataType="date" [width]="200"></dxi-column>
+      <dxi-column caption="Edad" dataField="edadCliente"  [width]="200"></dxi-column>
+      <dxi-column caption="Cantidad Venta" dataField="cantidadVenta"   [width]="200"></dxi-column>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-pager [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true">
+      </dxo-pager>
+    </dx-data-grid>
+  </div>
+</div>

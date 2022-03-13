@@ -1,0 +1,66 @@
+<h2 class="content-block">Clientes</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-form id="form" [colCount]="6" [formData]="entidad" labelLocation="left">
+      <dxi-item dataField="nombreCliente" editorType="dxTextBox" [colSpan]="2">
+        <dxo-label text="Nombre "></dxo-label>
+        <dxi-validation-rule type="required" message="Debe Ingresar un Nombre" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="apellidoCliente" editorType="dxTextBox" [colSpan]="2">
+        <dxo-label text="Apellido "></dxo-label>
+        <dxi-validation-rule type="required" message="Debe ingresar un apellido" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="numeroCelular" editorType="dxNumberBox" [colSpan]="2">
+        <dxo-label text="N° Cel"></dxo-label>
+        <dxi-validation-rule type="required" message="Debe ingresar un número de celular" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="tipoDocumento" editorType="dxSelectBox" [colSpan]="1"
+      [editorOptions]="{ dataSource: [{ id: 1, Name: 'Nit' },
+      { id: 2, Name: 'C.C' },
+      { id: 3, Name: 'T.E' }], valueExpr: 'id' , displayExpr:'Name'  }" >
+        <dxo-label text="Tipo de Identificación"></dxo-label>
+        <dxi-validation-rule type="required" message="Debe seleccionar un tipo de documento" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="cedula" editorType="dxNumberBox" [colSpan]="2">
+        <dxo-label text="N° de Identificación"></dxo-label>
+        <dxi-validation-rule type="required" message="Debe ingresar un número de Identificación" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="fechaNacimiento" editorType="dxDateBox" [colSpan]="2">
+        <dxo-label text="Fecha de Nacimiento"></dxo-label>
+        <dxi-validation-rule type="required" message="Debe ingresar la fecha de nacimiento" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item itemType="button" horizontalAlignment="center" [colSpan]="1"
+        [buttonOptions]="{text:'Agregar', type: 'default', icon: 'check', onClick: btnAgregar_Click}">
+      </dxi-item>
+    </dx-form>
+  </div>
+</div>
+<h2 class="content-block">Listado de Productos</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-data-grid #dataGridListado [dataSource]="dataSource" [focusedRowEnabled]="true" keyExpr="id"
+      [showColumnLines]="true" [showRowLines]="true">
+      <dxi-column caption="Codigo" dataField="id" sortOrder="asc" [width]="100">
+      </dxi-column>
+      <dxi-column caption="Nombre" dataField="nombreCliente"></dxi-column>
+      <dxi-column caption="Apellido" dataField="apellidoCliente" ></dxi-column>
+      <dxi-column caption="Tipo Identificación" dataField="tipoDocumento" [width]="150" [calculateDisplayValue]="getValue"></dxi-column>
+      <dxi-column caption="N° de Identificación" dataField="cedula" [width]="150"  ></dxi-column>
+      <dxi-column caption="Celular" dataField="numeroCelular" [width]="200"></dxi-column>
+      <dxi-column caption="Fecha Nacimiento" dataField="fechaNacimiento"  dataType="date" [width]="200"></dxi-column>
+      <dxi-column type="buttons" [width]="40">
+        <dxi-button hint="Eliminar" icon="trash" [visible]="true" [onClick]="eliminarClick">
+        </dxi-button>
+      </dxi-column>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-pager [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true">
+      </dxo-pager>
+    </dx-data-grid>
+  </div>
+</div>

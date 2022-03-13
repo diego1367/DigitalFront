@@ -1,0 +1,80 @@
+<h2 class="content-block">Facturación</h2>
+<div class="content-block">
+    <div class="dx-card responsive-paddings">
+        <dx-form id="form" [colCount]="6" [formData]="entidad" labelLocation="left">
+            <dxi-item itemType="group" caption="Cliente" [colCount]="6" [colSpan]="6">
+                <dxi-item dataField="id" editorType="dxNumberBox" [colSpan]="2">
+                    <dxo-label text="N° de Codigo"></dxo-label>
+                    <dxi-validation-rule type="required" message="Debe ingresar un número de Identificación"
+                        [reevaluate]="true">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item itemType="button" horizontalAlignment="center" [colSpan]="1"
+                    [buttonOptions]="{text:'Buscar', type: 'default', icon: 'find', onClick: btnBuscar_Click}">
+                </dxi-item>
+            </dxi-item>
+            <dxi-item dataField="nombreCliente" editorType="dxTextBox" [editorOptions]="{disabled:true}" [colSpan]="2">
+                <dxo-label text="Nombre "></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="apellidoCliente" editorType="dxTextBox" [editorOptions]="{disabled:true}"
+                [colSpan]="2">
+                <dxo-label text="Apellido "></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="numeroCelular" editorType="dxNumberBox" [editorOptions]="{disabled:true}"
+                [colSpan]="2">
+                <dxo-label text="N° Cel"></dxo-label>
+            </dxi-item>
+        </dx-form>
+    </div>
+</div>
+<div class="content-block">
+    <div class="dx-card responsive-paddings">
+        <dx-form id="form"  [colCount]="6" labelLocation="left">
+            <dxi-item itemType="group" caption="Productos" [colCount]="6" [colSpan]="6">
+                <dxi-item itemType="group" [colSpan]="2">
+                    <dxo-label text="Seleccione un Producto"></dxo-label>
+                    <dx-select-box [dataSource]="Productos" displayExpr="nombreProducto" valueExpr="id"
+                        itemTemplate="listItem" [(value)]="Select" [disabled]="habilitar">
+                        <div *dxTemplate="let item of 'listItem'">
+                            <div class="custom-item">
+                                <div>{{item.nombreProducto}} {{item.cantidadInventario}}{{precioProducto}}</div>
+                            </div>
+                        </div>
+                    </dx-select-box>
+                    <dxi-validation-rule type="required" message="El campo debe tener un valor." [reevaluate]="true">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item itemType="group" [colSpan]="1">
+                    <dxo-label text="Cantidad Venta "></dxo-label>
+                    <dx-number-box [(value)]="CantidadVenta"  [showSpinButtons]="true" [disabled]="habilitar"></dx-number-box>
+                </dxi-item>
+                <dxi-item itemType="group" [colSpan]="1">
+                    <dxo-label text="Fecha Venta"></dxo-label>
+                    <dx-date-box [(value)]="fecha" type="date"  [disabled]="habilitar"></dx-date-box>
+                </dxi-item>
+                <dxi-item itemType="button" horizontalAlignment="center" [colSpan]="1"
+                    [buttonOptions]="{text:'Agregar', type: 'default', icon: 'find', onClick: btnAgregar_Click, disabled:habilitar}">
+                </dxi-item>
+            </dxi-item>
+            <dxi-item itemType="group" [colSpan]="6">
+                <dx-data-grid #dataGridListado [dataSource]="listado" [focusedRowEnabled]="true" keyExpr="idVentas"
+                    [showColumnLines]="true" [showRowLines]="true">
+                    <dxi-column caption="Codigo" dataField="idVentas" sortOrder="asc" [width]="100">
+                    </dxi-column>
+                    <dxi-column caption="Nombre" dataField="idProductos.nombreProducto"></dxi-column>
+                    <dxi-column caption="Cantidad Venta" dataField="cantidadVenta" [width]="150" alignment="left">
+                    </dxi-column>
+                    <dxi-column caption="Precio" dataField="idProductos.precioProducto" [width]="150"></dxi-column>
+                    <dxi-column caption="Precio" dataField="fecha" [width]="150"></dxi-column>
+                    <dxo-pager [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true">
+                    </dxo-pager>
+                    <dxo-summary>
+                        <dxi-total-item column="idProductos.precioProducto" summaryType="sum" displayFormat="{0}" valueFormat="currency">
+                        </dxi-total-item>
+                    </dxo-summary>
+                </dx-data-grid>
+           
+            </dxi-item>
+        </dx-form>
+    </div>
+</div>

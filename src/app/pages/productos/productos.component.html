@@ -1,0 +1,73 @@
+<h2 class="content-block">Productos</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-form id="formMain" [colCount]="6" [formData]="entidad" labelLocation="left">
+      <dxi-item dataField="nombreProducto" editorType="dxTextBox" [colSpan]="2">
+        <dxo-label text="Nombre Producto"></dxo-label>
+        <dxi-validation-rule type="required" message="Debe Ingresar un Nombre de Producto" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="precioProducto" editorType="dxNumberBox" [colSpan]="2">
+        <dxo-label text="Precio Producto"></dxo-label>
+        <dxi-validation-rule type="required" message="Debe Ingresar el Precio del Producto" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="cantidadInventario" editorType="dxNumberBox" [colSpan]="1">
+        <dxo-label text="Cantida Inventario"></dxo-label>
+        <dxi-validation-rule type="required" message="Debe Ingresar Cantidad de Inventario del Producto"
+          [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item itemType="button" horizontalAlignment="center" [colSpan]="1"
+        [buttonOptions]="{text:'Agregar', type: 'default', icon: 'check', onClick: btnAgregar_Click}">
+      </dxi-item>
+    </dx-form>
+  </div>
+</div>
+<h2 class="content-block">Listado de Productos</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-data-grid #dataGridListado [dataSource]="dataSource" [focusedRowEnabled]="true" keyExpr="id"
+      [showColumnLines]="true" [showRowLines]="true" (onFocusedRowChanged)="onFocusedRowChanged($event)">
+      <dxo-paging [enabled]="false"></dxo-paging>
+      <dxi-column caption="Codigo" dataField="id" sortOrder="asc" [width]="100">
+      </dxi-column>
+      <dxi-column caption="Nombre" dataField="nombreProducto"></dxi-column>
+      <dxi-column caption="N° Inventario" dataField="cantidadInventario" [width]="150" alignment="left"></dxi-column>
+      <dxi-column caption="Precio" dataField="precioProducto" format="currency" [width]="150"></dxi-column>
+      <dxi-column type="buttons" [width]="80">
+        <dxi-button hint="Eliminar" icon="trash" [visible]="true" [onClick]="eliminarClick">
+        </dxi-button>
+        <dxi-button hint="Modificar" icon="refresh" [visible]="true" [onClick]="modificarClick">
+        </dxi-button>
+      </dxi-column>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+    </dx-data-grid>
+  </div>
+</div>
+<dx-popup title="Modificar" [showTitle]="true" [width]="700" [height]="325" [position]="{ my: 'top', at: 'top' }"
+  [(visible)]="popupVisible">
+  <div *dxTemplate="let data of 'content'">
+    <dx-form id="form" [colCount]="2" [formData]="entidadModificacion" labelLocation="left">
+      <dxi-item dataField="nombreProducto" editorType="dxTextBox" [colSpan]="2">
+        <dxo-label text="Nombre Producto"></dxo-label>
+        <dxi-validation-rule type="required" message="Debe Ingresar un Nombre de Producto" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="precioProducto" editorType="dxNumberBox" [colSpan]="2">
+        <dxo-label text="Precio Producto"></dxo-label>
+        <dxi-validation-rule type="required" message="Debe Ingresar el Precio del Producto" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="cantidadInventario" editorType="dxNumberBox" [colSpan]="1">
+        <dxo-label text="Cantida Inventario"></dxo-label>
+        <dxi-validation-rule type="required" message="Debe Ingresar Cantidad de Inventario del Producto"
+          [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item itemType="button" horizontalAlignment="center" [colSpan]="1"
+        [buttonOptions]="{text:'Grabar', type: 'default', icon: 'check', onClick: btnGrabar_Click}">
+      </dxi-item>
+    </dx-form>
+  </div>
+</dx-popup>

@@ -1,0 +1,16 @@
+<h2 class="content-block">Listado de total vendido por producto en el año 2000</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-data-grid #dataGridListado [dataSource]="dataSource" [focusedRowEnabled]="true" keyExpr="idCliente"
+      [showColumnLines]="true" [showRowLines]="true">
+      <dxi-column caption="Codigo" dataField="idCliente" sortOrder="asc" [width]="100">
+      </dxi-column>
+      <dxi-column caption="Nombre Cliente" dataField="nombreCliente"></dxi-column>
+      <dxi-column caption="Primera Compra"  dataType="date"dataField="primeraFecha" [width]="150" alignment="left"></dxi-column>
+      <dxi-column caption="Ultima Compra" dataField="ultimaFecha"  dataType="date"   [width]="150"></dxi-column>
+      <dxi-column caption="Fecha Promedio" dataField="fechaPromedio" dataType="date" [width]="150"></dxi-column>
+      <dxo-pager [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true">
+      </dxo-pager>
+    </dx-data-grid>
+  </div>
+</div>
